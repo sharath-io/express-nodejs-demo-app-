@@ -1,19 +1,19 @@
 const express = require('express');
-const path = require('path'); // node js module => no need to install
 require('./db');
+// importing routes
+const todoRoutes = require('./routes/todo')
 
 const app = express();
-const publicPath = path.join(__dirname, 'public')
 
-app.use(express.static(publicPath));
+// const todo = new Todo({
+//     title: ' Fourth ',
+//     status: 'completed'
+// })
 
-app.get('*', (req,res)=> {
-    const filePath = path.join(__dirname,'public','404.html')
-    res.sendFile(filePath);
- })
+// todo.save();
+
+app.use('/api/todos', todoRoutes)
 
 app.listen(3000, ()=>{
     console.log('Express server started')
 })
-
-// mongodb+srv://sharathroot:<db_password>@cluster0.tdnrz.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
