@@ -1,19 +1,17 @@
 const express = require('express');
 require('./db');
 // importing routes
-const todoRoutes = require('./routes/todo')
+const todoRoutes = require('./routes/todo');
+
+const PORT = process.env.PORT || 3030
 
 const app = express();
 
-// const todo = new Todo({
-//     title: ' Fourth ',
-//     status: 'completed'
-// })
+app.use(express.json());
 
-// todo.save();
 
 app.use('/api/todos', todoRoutes)
 
-app.listen(3000, ()=>{
-    console.log('Express server started')
+app.listen(PORT, ()=>{
+    console.log(`Express server started  on port ${PORT}`)
 })
